@@ -1,1 +1,3 @@
-# econometrics2020-solutions
+# Econometrics 2020 discussion
+
+Assignment and homeworks solution repository.
