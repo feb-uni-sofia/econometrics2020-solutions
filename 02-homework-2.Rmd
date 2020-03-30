@@ -10,8 +10,8 @@ Github classroom link: [https://classroom.github.com/g/qogtEQ5b](https://classro
 **Disclaimer**: As in the previous homework, please note that the dataset used here is simplified for _ease of use_ and the analysis here
 MUST be viewed an an exercise, not real-world research! For the full dataset always refer to the data source!
 
-The dataset `linton` is an adapted version from of the data used to study the incubation period of SARS-Cov-19, the virus that causes COVID19 @Linton2020. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the `Incubation` variable in the dataset
-that contains the time in days from exposure to the virus to symptoms onset.
+The dataset `linton` is an adapted version of the data  @Linton2020 use to study the incubation period of SARS-CoV-19, the virus that causes COVID19. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the variable `Incubation`  
+that measures the time in days from exposure to the virus to symptoms onset.
 
 Before you begin you may find the following source useful:
 
