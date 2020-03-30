@@ -13,6 +13,13 @@ MUST be viewed an an exercise, not real-world research! For the full dataset alw
 The dataset `linton` is an adapted version from of the data used to study the incubation period of SARS-Cov-19, the virus that causes COVID19 @Linton2020. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the `Incubation` variable in the dataset
 that contains the time in days from exposure to the virus to symptoms onset.
 
+Before you begin you may find the following source useful:
+
+- Simple regression model: @Heumann2016, pp. 249-259.
+- Hypothesis testing: @Heumann2016, pp. 219-221.
+- Confidence interval: @Heumann2016, pp. 197-199.
+- Normal distribution: @Heumann2016, pp. 166-169.
+
 1. Read and download the data (already done in the starter code)
 
 2. Let $y_i$ denote the incubation time for patient $i = 1,\ldots,n$. Let $u_i \sim N(0, \sigma ^ 2)$ be a normally distributed random variable with zero mean and variance $\sigma ^ 2$. Furthermore, assume that the error terms $u_i$ are independent. Fit the linear regression model:
@@ -35,7 +42,7 @@ _Hint_: use the `lm` function in R.
 
 3. Write down the estimated regression equation (as a comment in the code).
 
-4. What is the meaning of the intercept $\beta_0$ in the model (write your answer as a comment in the code)?
+4. What is the meaning of the intercept $\beta_0$ in the model? Write your answer in plain language as a comment in the code.
 
 5. Estimate a 95 percent confidence interval for $\beta_0$.
 

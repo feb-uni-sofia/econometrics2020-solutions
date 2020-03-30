@@ -708,6 +708,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 MUST be viewed an an exercise, not real-world research! For the full dataset always refer to the data source!</p>
 <p>The dataset <code>linton</code> is an adapted version from of the data used to study the incubation period of SARS-Cov-19, the virus that causes COVID19 <span class="citation">Linton et al. (<a href="#ref-Linton2020">2020</a>)</span>. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the <code>Incubation</code> variable in the dataset
 that contains the time in days from exposure to the virus to symptoms onset.</p>
+<p>Before you begin you may find the following source useful:</p>
+<ul>
+<li>Simple regression model: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 249-259.</li>
+<li>Hypothesis testing: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 219-221.</li>
+<li>Confidence interval: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 197-199.</li>
+<li>Normal distribution: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 166-169.</li>
+</ul>
 <ol style="list-style-type: decimal">
 <li><p>Read and download the data (already done in the starter code)</p></li>
 <li><p>Let <span class="math inline">\(y_i\)</span> denote the incubation time for patient <span class="math inline">\(i = 1,\ldots,n\)</span>. Let <span class="math inline">\(u_i \sim N(0, \sigma ^ 2)\)</span> be a normally distributed random variable with zero mean and variance <span class="math inline">\(\sigma ^ 2\)</span>. Furthermore, assume that the error terms <span class="math inline">\(u_i\)</span> are independent. Fit the linear regression model:</p></li>
@@ -723,7 +730,7 @@ that contains the time in days from exposure to the virus to symptoms onset.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">  <span class="kw">summary</span>(fit)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Write down the estimated regression equation (as a comment in the code).</p></li>
-<li><p>What is the meaning of the intercept <span class="math inline">\(\beta_0\)</span> in the model (write your answer as a comment in the code)?</p></li>
+<li><p>What is the meaning of the intercept <span class="math inline">\(\beta_0\)</span> in the model? Write your answer in plain language as a comment in the code.</p></li>
 <li><p>Estimate a 95 percent confidence interval for <span class="math inline">\(\beta_0\)</span>.</p></li>
 <li><p>Given the hypothesis:</p></li>
 </ol>
@@ -744,6 +751,9 @@ between 5 and 10 days.</p></li>
 
 <div id="refs" class="references">
 <div>
+<p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
+</div>
+<div>
 <p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
 </div>
 </div>
@@ -751,6 +761,9 @@ between 5 and 10 days.</p></li>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-Heumann2016">
+<p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
+</div>
 <div id="ref-Linton2020">
 <p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
 </div>

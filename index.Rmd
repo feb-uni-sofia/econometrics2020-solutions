@@ -19,7 +19,7 @@ github-repo: feb-uni-sofia/econometrics2020-solutions
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 always_allow_html: true
 ---
-
+  
 ```{r setup, include=FALSE}
   # Add a common class name for every chunks
   isHtml <- knitr::is_html_output()
@@ -33,5 +33,6 @@ always_allow_html: true
 
 # Preface
 
+TODO
 
 
