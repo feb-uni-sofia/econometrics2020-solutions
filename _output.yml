@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  css: style.css
+  includes:
+    in_header: preamble.tex
+  config:
+    toc:
+      before: |
+        <li><a href="./">Introduction to econometrics</a></li>
+      after: |
+        <li><a href="https://github.com/feb-uni-sofia/econometrics2020-solutions" target="blank">Github</a></li>
+    edit: https://github.com/feb-uni-sofia/econometrics2020-solutions/edit/master/%s
+    download: ["pdf", "epub"]
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

@@ -1,0 +1,37 @@
+--- 
+title: "Introduction to econometrics"
+subtitle: ""
+author: "Boyko Amarov"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  bookdown::html_document2:
+    includes:
+      in_header: header.html
+  bookdown::gitbook:
+    includes:
+      in_header: header.html
+documentclass: book
+bibliography: [bibliography.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: feb-uni-sofia/econometrics2020-solutions
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+always_allow_html: true
+---
+
+```{r setup, include=FALSE}
+  # Add a common class name for every chunks
+  isHtml <- knitr::is_html_output()
+  # echo = isHtml
+  knitr::opts_chunk$set(message = isHtml, warning = isHtml)
+  options(knitr.table.format = function() {
+    if (knitr::is_latex_output()) 'latex' else 'pandoc'
+  })
+```
+
+
+# Preface
+
+
+
