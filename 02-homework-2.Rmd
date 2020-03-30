@@ -5,7 +5,7 @@
 
 ## Homework 2
 
-[Invitation link: https://classroom.github.com/g/qogtEQ5b](https://classroom.github.com/g/qogtEQ5b)
+Github classroom link: [https://classroom.github.com/g/qogtEQ5b](https://classroom.github.com/g/qogtEQ5b)
 
 **Disclaimer**: As in the previous homework, please note that the dataset used here is simplified for _ease of use_ and the analysis here
 MUST be viewed an an exercise, not real-world research! For the full dataset always refer to the data source!
