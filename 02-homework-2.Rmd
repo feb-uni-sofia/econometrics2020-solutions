@@ -97,8 +97,6 @@ _Hint_: use the `lm` function in R.
 
 4. What is the meaning of the intercept $\beta_0$ in the model? Write your answer in plain language as a comment in the code.
 
-5. Estimate a 95 percent confidence interval for $\beta_0$.
-
 6. Given the hypothesis:
 
 \begin{align}
@@ -110,6 +108,8 @@ _Hint_: use the `lm` function in R.
   - Using the regression output, test the hypothesis at a 5 percent significance level and write down your decision to
     reject or not to reject the null hypothesis.
     
+5. Estimate a 95 percent confidence interval for $\beta_0$.
+
 7. Using the regression output, estimate the probability that a randomly chosen person will have an incubation period
   between 5 and 10 days.
 
