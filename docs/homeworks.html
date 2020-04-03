@@ -24,7 +24,7 @@
 <meta name="author" content="Boyko Amarov" />
 
 
-<meta name="date" content="2020-03-30" />
+<meta name="date" content="2020-04-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -677,7 +677,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
 <li class="chapter" data-level="2" data-path="homeworks.html"><a href="homeworks.html"><i class="fa fa-check"></i><b>2</b> Homeworks</a><ul>
-<li class="chapter" data-level="2.1" data-path="homeworks.html"><a href="homeworks.html#homework-2"><i class="fa fa-check"></i><b>2.1</b> Homework 2</a></li>
+<li class="chapter" data-level="2.1" data-path="homeworks.html"><a href="homeworks.html#homework-1"><i class="fa fa-check"></i><b>2.1</b> Homework 1</a></li>
+<li class="chapter" data-level="2.2" data-path="homeworks.html"><a href="homeworks.html#homework-2"><i class="fa fa-check"></i><b>2.2</b> Homework 2</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/feb-uni-sofia/econometrics2020-solutions" target="blank">Github</a></li>
@@ -701,12 +702,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="homeworks" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Homeworks</h1>
+<div id="homework-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Homework 1</h2>
+<p>Github classroom link: <a href="https://classroom.github.com/g/vguWjRNd">https://classroom.github.com/g/vguWjRNd</a></p>
+<p>Please choose <em>one</em> of the following problems. Write your solution in a file named <code>Problem_1.R</code> or <code>Problem\_2.R</code> depending on the number of the problem that you have picked. When you are finished, upload your code to your team’s homework repository by pasting it in one of the files there: <code>Problem_1.R</code> or <code>Problem_2.R</code>.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 2.1  </strong></span>In the wake of the COVID-19 outbreak data analysis can yield important insights that can help to contain the disease and ultimately to save lives. The dataset <code>COVID19_2020_open_line_list</code> contains data on patients with confirmed COVID19 infections in the United States, Japan and China (outside Hubei province). <strong>Disclaimer</strong>: This is an <em>exercise</em> dataset. Cases with missing or incomplete data on age and sex were removed. When age was given as an interval (e.g. 0-10 years) it was replaced with the midpoint of the interval. <em>Do not</em> draw any real-life conclusions based on the analysis here! For the full dataset refer to <span class="citation">Xu et al. (<a href="#ref-Xu2020">2020</a>)</span>.</p>
+<ul>
+<li><strong>ID</strong> (numeric): Case id.</li>
+<li><strong>date_confirmation</strong> (date): Date when the infection was confirmed.</li>
+<li><strong>sex</strong> (character): Patients’ sex: male/female</li>
+<li><strong>age</strong> (numeric): Patients’ age in years.</li>
+<li><strong>province</strong> (character): Province where the infection was confirmed.</li>
+<li><strong>country</strong> (character): Country</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Download and read the dataset and store it in an object called .</li>
+<li>How many patients are there in the dataset?</li>
+<li>What are the earliest and latest date of infection confirmation?</li>
+<li>What is the average age of the patients?</li>
+<li>How many men and how many women are there in the sample?</li>
+<li>Plot the frequency distribution of sex using a bar-chart.</li>
+<li>What was the age of the youngest woman?</li>
+<li>What was the age of the oldest man?</li>
+<li>Is there a difference between the average age of male and female patients?</li>
+<li>Compare the distribution of age between the countries using a box-plot. Interpret the plot (write your answer as a comment in the code).
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Exercise 2.2  </strong></span>Orley Ashenfelter, an Economics Professor at Princeton University claimed to have found a method to predict the quality of Bordeaux (<a href="http://www.liquidasset.com/orley.htm" class="uri">http://www.liquidasset.com/orley.htm</a>)[wine]. In this problem we will borrow data from (<a href="http://www.liquidasset.com/winedata.htm" class="uri">http://www.liquidasset.com/winedata.htm</a>)[<a href="http://www.liquidasset.com/winedata.htm" class="uri">http://www.liquidasset.com/winedata.htm</a>]. The dataset contains information about the prices of Bordeaux wines produced between 1952 and 1980 organised in the following columns:</p>
+<ul>
+<li><strong>Year</strong>: Year in which the wine was produced (unique).</li>
+<li><strong>LogPrice</strong>: Logarithm of the price of the wine.</li>
+<li><strong>WinterRain</strong>: Winter rain in the Bordeaux region (October to March, in ml).</li>
+<li><strong>Temperature</strong>: Average temperature in the region (April to September, in degrees Celsius).</li>
+<li><strong>HarvestRain</strong>: Harvest rain in the region (August and September, in ml).</li>
+<li><strong>TimeYears</strong>: Time since vintage in years.</li>
+</ul>
+<p>For a short, entertaining, story about Ashenfelter’s analysis and his predictions of wine prices, read the first few pages of <span class="citation">Ayres (<a href="#ref-Ayres2008">2008</a>)</span>, freely available on (<a href="https://books.google.bg/books?id=brHyklsoPRMC&amp;printsec=frontcover&amp;hl=bg#v=onepage&amp;q&amp;f=false" class="uri">https://books.google.bg/books?id=brHyklsoPRMC&amp;printsec=frontcover&amp;hl=bg#v=onepage&amp;q&amp;f=false</a>)[books.google.com].</p>
+<ol style="list-style-type: decimal">
+<li>Download and read the dataset and store in a variable called <code>wines</code>.</li>
+<li>Create a new variable (in the <code>data.frame</code> <code>wines</code>) called <code>Price</code> by converting <code>LogPrice</code> back to its original scale. <em>Hint</em>: use the <code>exp</code> function.</li>
+<li>How many years are recorded in the dataset?</li>
+<li>What was the average temperature in 1953? Write your answer as a comment in the code.</li>
+<li>Which was the coldest year recorded?</li>
+<li>Compute the average wine price for hot and cold years. Define a cold year to be a year with below average temperature.</li>
+<li>Are wines produced during cold years more valuable (on average) than wines produced during hot years?</li>
+<li>How many years had below-average temperature? <em>Hint</em>: use the <code>table</code> function.</li>
+<li>Compare the distribution of prices between hot and cold years using a box-plot. Interpret the plot.</li>
+<li>Create a scatterplot for wine price and the rainfall level during harvest . Do you see any association pattern? Write your answer as a comment in the code.
+</div></li>
+</ol>
+</div>
 <div id="homework-2" class="section level2">
-<h2><span class="header-section-number">2.1</span> Homework 2</h2>
+<h2><span class="header-section-number">2.2</span> Homework 2</h2>
 <p>Github classroom link: <a href="https://classroom.github.com/g/qogtEQ5b">https://classroom.github.com/g/qogtEQ5b</a></p>
 <p><strong>Disclaimer</strong>: As in the previous homework, please note that the dataset used here is simplified for <em>ease of use</em> and the analysis here
 MUST be viewed an an exercise, not real-world research! For the full dataset always refer to the data source!</p>
-<p>The dataset <code>linton</code> is an adapted version of the data <span class="citation">Linton et al. (<a href="#ref-Linton2020">2020</a>)</span> use to study the incubation period of SARS-CoV-19, the virus that causes COVID19. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the variable <code>Incubation</code><br />
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-3" class="exercise"><strong>Exercise 2.3  </strong></span>The dataset <code>linton</code> is an adapted version of the data <span class="citation">Linton et al. (<a href="#ref-Linton2020">2020</a>)</span> use to study the incubation period of SARS-CoV-19, the virus that causes COVID19. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the variable <code>Incubation</code><br />
 that measures the time in days from exposure to the virus to symptoms onset.</p>
 <p>Before you begin you may find the following source useful:</p>
 <ul>
@@ -723,6 +780,8 @@ that measures the time in days from exposure to the virus to symptoms onset.</p>
   y_i = \beta_0 + u_i, \quad i = 1,\ldots,n. \tag{2.1}
 \end{align}\]</span></p>
 <p><em>Hint</em>: use the <code>lm</code> function in R.</p>
+</div>
+
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Incubation <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> linton) <span class="co">## This instructs lm to use only a constant</span></a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Print the summary of the regression fit</li>
@@ -746,26 +805,39 @@ reject or not to reject the null hypothesis.</li>
 <ol start="7" style="list-style-type: decimal">
 <li><p>Using the regression output, estimate the probability that a randomly chosen person will have an incubation period
 between 5 and 10 days.</p></li>
-<li><p>Do you see any problems with the choice of the statistical model in <a href="homeworks.html#eq:hw1-regression-model">(2.1)</a> (write down your answer as a comment in the code)?</p></li>
+<li><p>Do you see any problems with the choice of the statistical model in <a href="homeworks.html#eq:hw1-regression-model">(2.1)</a> (write down your answer as a comment in the code)?
+```</p></li>
 </ol>
 
 <div id="refs" class="references">
+<div>
+<p>Ayres, Ian. 2008. <em>Super Crunchers</em>. John Murray Press. <a href="https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html">https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html</a>.</p>
+</div>
 <div>
 <p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
 </div>
 <div>
 <p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
+</div>
+<div>
+<p>Xu, Bo, Moritz U G Kraemer, Bo Xu, Bernardo Gutierrez, Sumiko Mekaru, Kara Sewalk, Alyssa Loskill, et al. 2020. “Open Access Epidemiological Data from the COVID-19 Outbreak.” <em>The Lancet Infectious Diseases</em>, February. Elsevier BV. <a href="https://doi.org/10.1016/S1473-3099(20)30119-5">https://doi.org/10.1016/S1473-3099(20)30119-5</a>.</p>
 </div>
 </div>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
+<div id="ref-Ayres2008">
+<p>Ayres, Ian. 2008. <em>Super Crunchers</em>. John Murray Press. <a href="https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html">https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html</a>.</p>
+</div>
 <div id="ref-Heumann2016">
 <p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
 </div>
 <div id="ref-Linton2020">
 <p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
+</div>
+<div id="ref-Xu2020">
+<p>Xu, Bo, Moritz U G Kraemer, Bo Xu, Bernardo Gutierrez, Sumiko Mekaru, Kara Sewalk, Alyssa Loskill, et al. 2020. “Open Access Epidemiological Data from the COVID-19 Outbreak.” <em>The Lancet Infectious Diseases</em>, February. Elsevier BV. <a href="https://doi.org/10.1016/S1473-3099(20)30119-5">https://doi.org/10.1016/S1473-3099(20)30119-5</a>.</p>
 </div>
 </div>
             </section>
