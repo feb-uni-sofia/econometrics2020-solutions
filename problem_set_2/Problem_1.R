@@ -1,7 +1,7 @@
 ###########################################################################################################
 ## Econometrics 2020
 ## Homework 2
-## Homework assignment text: https://feb-uni-sofia.github.io/econometrics2020-solutions/assignments.html#assignment-2
+## Assignment text: file:///home/amarov/proj/statistics/econometrics2020-solutions/docs/assignments.html#assignment-2-linear-regression-1
 ###########################################################################################################
 
 ## 1) Download and read data
