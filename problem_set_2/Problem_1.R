@@ -1,7 +1,6 @@
 ###########################################################################################################
 ## Econometrics 2020
-## Homework 2
-## Assignment text: file:///home/amarov/proj/statistics/econometrics2020-solutions/docs/assignments.html#assignment-2-linear-regression-1
+## Assignment 2 (Constant only linear regression)
 ###########################################################################################################
 
 ## 1) Download and read data
