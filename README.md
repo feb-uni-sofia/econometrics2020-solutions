@@ -9,7 +9,3 @@ Assignments that we will discuss together online are available in the [assignmen
 The homeworks will be published in the [homeworks chapter](https://feb-uni-sofia.github.io/econometrics-script/homeworks.html). The next homework will be available after we finish the second assignment.
 
 The rest of the chapters contain discussions of the key topics that we are discussing together with notes on basic statistics.
-
-## Deprecated
-
-You can find the text of all homeworks [here](https://feb-uni-sofia.github.io/econometrics2020-solutions/homeworks.html)
