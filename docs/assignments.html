@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Assignments | Introduction to econometrics</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Assignments | Introduction to econometrics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="feb-uni-sofia/econometrics2020-solutions" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Assignments | Introduction to econometrics" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Boyko Amarov" />
+
+
+<meta name="date" content="2020-04-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="homeworks.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+<script>
+/* ========================================================================
+ * Bootstrap: transition.js v3.3.7
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+
+    return false // explicit for ie8 (  ._.)
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false
+    var $el = this
+    $(this).one('bsTransitionEnd', function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+
+    if (!$.support.transition) return
+
+    $.event.special.bsTransitionEnd = {
+      bindType: $.support.transition.end,
+      delegateType: $.support.transition.end,
+      handle: function (e) {
+        if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
+      }
+    }
+  })
+
+}(jQuery);
+
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.7
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
+  }
+
+  Collapse.VERSION  = '3.3.7'
+
+  Collapse.TRANSITION_DURATION = 350
+
+  Collapse.DEFAULTS = {
+    toggle: true
+  }
+
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
+
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
+
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
+
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
+    }
+
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+</script>
+<script>
+window.initializeCodeFolding = function(show) {
+
+  // handlers for show-all and hide all
+  $("#rmd-show-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('show');
+    });
+  });
+  $("#rmd-hide-all-code").click(function() {
+    $('div.r-code-collapse').each(function() {
+      $(this).collapse('hide');
+    });
+  });
+
+  // index for unique code element ids
+  var currentIndex = 1;
+
+  // select all R code blocks
+  var rCodeBlocks = $('pre.sourceCode, pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.js');
+  rCodeBlocks.each(function() {
+
+    // create a collapsable div to wrap the code in
+    var div = $('<div class="collapse r-code-collapse"></div>');
+    if (show)
+      div.addClass('in');
+    var id = 'rcode-643E0F36' + currentIndex++;
+    div.attr('id', id);
+    $(this).before(div);
+    $(this).detach().appendTo(div);
+
+    // add a show code button right above
+    var showCodeText = $('<span>' + (show ? 'Hide' : 'Code') + '</span>');
+    var showCodeButton = $('<button type="button" class="btn btn-default btn-xs code-folding-btn pull-right"></button>');
+    showCodeButton.append(showCodeText);
+    showCodeButton
+        .attr('data-toggle', 'collapse')
+        .attr('data-target', '#' + id)
+        .attr('aria-expanded', show)
+        .attr('aria-controls', id);
+
+    var buttonRow = $('<div class="row"></div>');
+    var buttonCol = $('<div class="col-md-12"></div>');
+
+    buttonCol.append(showCodeButton);
+    buttonRow.append(buttonCol);
+
+    div.before(buttonRow);
+
+    // update state of button on show/hide
+    div.on('hidden.bs.collapse', function () {
+      showCodeText.text('Code');
+    });
+    div.on('show.bs.collapse', function () {
+      showCodeText.text('Hide');
+    });
+  });
+
+}
+</script>
+<script>
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.7
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.7'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
+      }
+
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
+</script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+.row { display: flex; }
+.collapse { display: none; }
+.in { display:block }
+.pull-right > .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to econometrics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i><b>2</b> Assignments</a><ul>
+<li class="chapter" data-level="2.1" data-path="assignments.html"><a href="assignments.html#assignment-1"><i class="fa fa-check"></i><b>2.1</b> Assignment 1</a></li>
+<li class="chapter" data-level="2.2" data-path="assignments.html"><a href="assignments.html#assignment-2-linear-regression-1"><i class="fa fa-check"></i><b>2.2</b> Assignment 2 (Linear regression 1)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="homeworks.html"><a href="homeworks.html"><i class="fa fa-check"></i><b>3</b> Homeworks</a><ul>
+<li class="chapter" data-level="3.1" data-path="homeworks.html"><a href="homeworks.html#homework-1"><i class="fa fa-check"></i><b>3.1</b> Homework 1</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>4</b> Distributions</a><ul>
+<li class="chapter" data-level="4.1" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>4.1</b> The normal distribution</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions.html"><a href="distributions.html#chi2-distribution"><i class="fa fa-check"></i><b>4.2</b> Chi square distribution</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions.html"><a href="distributions.html#t-distribution"><i class="fa fa-check"></i><b>4.3</b> t-distribution</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/feb-uni-sofia/econometrics2020-solutions" target="blank">Github</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to econometrics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="assignments" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Assignments</h1>
+<div id="assignment-1" class="section level2">
+<h2><span class="header-section-number">2.1</span> Assignment 1</h2>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 2.1  (R basics)  </strong></span> The purpose of this exercise is to get to know the basic data types in <code>R</code> and the basic operations. To execute a single line in RStudio place the cursor on that line press <code>Ctrl</code> (and hold it), then press <code>Enter</code>. To execute multiple lines, select the lines and press <code>Ctrl + Enter</code>. To insert the assignment operator “<code>&lt;-</code>” press <code>Alt + -</code>. Find the complete <code>R</code> code for this exercise <a href="https://github.com/feb-uni-sofia/econometrics2020-solutions/blob/master/problem_set_1/Problem_1.R">here</a>.
+</div>
+
+<ol style="list-style-type: decimal">
+<li>Calculate the sum of <code>8</code> and <code>31</code> and assign it to a variable named <code>x</code>.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">8</span> <span class="op">+</span><span class="st"> </span><span class="dv">31</span></a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculate 2 to the power of 8 and assign it to a variable named <code>y</code>.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">^</span><span class="st"> </span><span class="dv">8</span></a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Calculate the ratio of <code>x</code> and <code>y</code>.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x <span class="op">/</span><span class="st"> </span>y</a></code></pre></div>
+<pre><code>## [1] 0.1523438</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Run the code <code>X + y</code> and <em>read</em> the error message.</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">X <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;X&#39; not found</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Assign the string literal <code>&quot;six&quot;</code> to a variable called <code>x_char</code>.</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x_char &lt;-<span class="st"> &quot;six&quot;</span></a></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>Try to calculate the sum of <code>x_char</code> and <code>y</code> and <em>read</em> the error message.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">x_char <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
+<pre><code>## Error in x_char + y: non-numeric argument to binary operator</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Assign <code>TRUE</code> to a variable named <code>x_true</code> and <code>FALSE</code> to a variable named <code>x_false</code>. Calculate the sum of these variables and inspect the result.</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">x_true &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">x_false &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">x_true <span class="op">+</span><span class="st"> </span>x_false</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-9" class="exercise"><strong>Exercise 2.2  (Vectors)  </strong></span>A vector in <code>R</code> is an ordered collection of values. Each vector can hold an arbitrary number of values of a single type (numeric, character, logical, etc.). An important function used to create vectors is <code>c</code> (concatenate).
+Find the complete <code>R</code> code for this exercise <a href="https://github.com/feb-uni-sofia/econometrics2020-solutions/blob/master/problem_set_1/Problem_2.R">here</a>.</p>
+Sometimes we need to create vectors with special structures, e.g. the numbers from 1 to 100, the even numbers from 2 to 20, etc. R provides the built-in functions <code>seq</code> (sequence), <code>rep</code> (repeat) and <code>:</code> to help in such cases.
+</div>
+
+<ol style="list-style-type: decimal">
+<li>Use the <code>c</code> function to create a numeric vector with values: 1, 4, 5.8 and assign it to an object called .</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="fl">5.8</span>)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Use the <code>c</code> function to create a numeric vector with values 2, 3, 8 and assign it to an object called .</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">8</span>)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Use the <code>c</code> function to concatenate <code>x</code> and <code>y</code> to a vector called <code>z</code>.</li>
+</ol>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">z &lt;-<span class="st"> </span><span class="kw">c</span>(x, y)</a></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a vectors with the numbers from <code>1</code> to <code>10</code> using both <code>seq</code> and <code>:</code>.</li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Create a vector of length 10 with the number <code>1</code> at each index. : use the <code>rep</code> function.</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##  [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Create the vector 1, 2, 3, 1, 2, 3, 1, 2, 3 using <code>rep</code>.</li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 1 2 3 1 2 3 1 2 3</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Create the vector 1, 1, 1, 2, 2, 2 using <code>rep</code>.</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">v &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">each =</span> <span class="dv">3</span>)</a></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Use the assignment operator to change the first element of the last vector you created from 1 to 3.</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">v[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<ol start="9" style="list-style-type: decimal">
+<li>Use the assignment operator to change the last element to 9.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">v[<span class="kw">length</span>(v)] &lt;-<span class="st"> </span><span class="dv">9</span></a></code></pre></div>
+<ol start="10" style="list-style-type: decimal">
+<li>Use the subset operator[]to select the first and the last elements.</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">v[<span class="kw">c</span>(<span class="dv">1</span>, <span class="kw">length</span>(v))]</a></code></pre></div>
+<pre><code>## [1] 3 9</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Use the subset operator to select only those elements that are equal to 1.</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">v[v <span class="op">==</span><span class="st"> </span><span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 1 1</code></pre>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-21" class="exercise"><strong>Exercise 2.3  (Data frame, subsets, descriptive statistics)  </strong></span>The dataset <code>mall</code> contains data from interviews with mall customers. It contains the following variables (columns):
+</div>
+
+<ul>
+<li><strong>Id</strong>: Customer Id</li>
+<li><strong>Gender</strong> (character): Customer gender (male/female)</li>
+<li><strong>Age</strong> (numeric): Age in years</li>
+<li><strong>Income</strong> (numeric): Annual income (in 1,000 USD)</li>
+<li><strong>Score</strong> (numeric): Customer purchasing score computed by the mall.</li>
+</ul>
+<p>You can find the complete <code>R</code> code for this exercise <a href="https://github.com/feb-uni-sofia/econometrics2020-solutions/blob/master/problem_set_1/Problem_3.R">here</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Copy paste the content of Problem_3.R located in the github repository into a new script in your R-Studio.</li>
+<li>Run the code that downloads and reads the data file.</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">mall &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://s3.eu-central-1.amazonaws.com/sf-timeseries/data/mall_customers.csv&#39;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Examine the result using the <code>str</code> function.</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">str</span>(mall)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    200 obs. of  5 variables:
+##  $ Id    : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Gender: chr  &quot;Male&quot; &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; ...
+##  $ Age   : int  19 21 20 23 31 22 35 23 64 30 ...
+##  $ Income: int  15 15 16 16 17 17 18 18 19 19 ...
+##  $ Score : int  39 81 6 77 40 76 6 94 3 72 ...</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co">## The str() function prints a summary of an object.</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="co">## In the case of data frames it prints the number of observations (rows), the number of variables (columns)</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co">## and the first few values of each column</span></a></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>How many customers are included in the dataset?</li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="co">## Answer: 200 customers</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="co">## Hint: look at the result of str(mall).</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="co">## Alternatively, use nrow</span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">nrow</span>(mall)</a></code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>What is the age of the first customer in the dataset?</li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co">## Answer: 19 years</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="co">## Hint click on the mall object in the global environment pane and look up the value of the Age column </span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="co">## for the first customer.</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="co">## Alternatively, you can select it using the</span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="co">## subset operator:</span></a>
+<a class="sourceLine" id="cb36-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">mall[<span class="dv">1</span>, <span class="st">&quot;Age&quot;</span>]</a></code></pre></div>
+<pre><code>## [1] 19</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>What is the gender of the last customer in the dataset?</li>
+</ol>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co">## Answer: Male</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="co">## Scroll to the bottom of the table (you need to click on the mall object in the environment pane to open it in table view)</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">## and look up the gender of the last customer</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">## Alternatively you can select it using the subset operator.</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co">## To select the last row we need to now its position, i.e. how many rows are there</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co">## We can compute that using nrow.</span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">n &lt;-<span class="st"> </span><span class="kw">nrow</span>(mall)</a>
+<a class="sourceLine" id="cb38-11" data-line-number="11">mall[n, <span class="st">&quot;Gender&quot;</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Male&quot;</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Compute the average customer age in this dataset using the <code>mean</code> function.</li>
+</ol>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="co">## Answer: 38.85 years</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="co">## Use the $ operator to select a column by name (note that column names are case-sensitive)</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="kw">mean</span>(mall<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>## [1] 38.85</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Compute the minium, maximum, and median age and interpret the results.</li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">min</span>(mall<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>## [1] 18</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">max</span>(mall<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>## [1] 70</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">median</span>(mall<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>## [1] 36</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="co">## Alternatively, you can get these descriptive statistics using the summary function:</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="kw">summary</span>(mall<span class="op">$</span>Age)</a></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18.00   28.75   36.00   38.85   49.00   70.00</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="co">## The youngest customer in the sample was 18 years old and the oldest was 70 years old.</span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">## About 50% (half) of the customers were younger than 36 years (media). About a quarter were</span></a>
+<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="co">## younger than 28.75 years (first quartile: 1st Qu. in the output). About a quarter of the </span></a>
+<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="co">## customers were older than 49.0 years (third quartile: 3rd Qu. in the output)</span></a></code></pre></div>
+<ol start="9" style="list-style-type: decimal">
+<li>Compute the 0.05, 0.2, 0.5, 0.75 and 0.95 empirical quantiles of age and interpret the result.</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="co">## Empirical quantiles</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">quantile</span>(mall<span class="op">$</span>Age, <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>))</a></code></pre></div>
+<pre><code>##   10%   25%   50%   75%   95% 
+## 21.00 28.75 36.00 49.00 66.05</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co">## About 10% of the customers were younger than 21 years (0.1 empirical quantile) and about 5% of the customers were older </span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">## than 66.05 years (0.95 empirical quantile).</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co">## The other quantiles are already discussed under h)</span></a></code></pre></div>
+<ol start="10" style="list-style-type: decimal">
+<li>How many customers were younger than the average age? <em>Hint</em>: create a logical vector and compute its sum using the <code>sum</code> function.</li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="co">## Answer: 113</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co">## Then we create a vector of logical values that are TRUE for these observations (rows)</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co">## with age less than 38.85 (avgAge) and FALSE otherwise.</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5"><span class="co">## Note that &quot;&lt;&quot; is a logical operator (examine the contents of ) ageLessThanAvg</span></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6">ageLessThanAvg &lt;-<span class="st"> </span>(mall<span class="op">$</span>Age <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(mall<span class="op">$</span>Age))</a>
+<a class="sourceLine" id="cb54-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co">## Sum the TRUE/FALSE values in ageLessThanAvg</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9"><span class="kw">sum</span>(ageLessThanAvg)</a></code></pre></div>
+<pre><code>## [1] 113</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="co">## When used in arithmetic operations TRUE is coerced (converted)  to 1 and FALSE is coerced to 0.</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="co">## Therefore the sum of a logical vector is simply the number of TRUE values.</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co">## If you have difficulties with the above example, try it with a simple vector,</span></a>
+<a class="sourceLine" id="cb56-4" data-line-number="4"><span class="co">## change the TRUE/FALSE values and compare the result.</span></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6"><span class="kw">sum</span>(<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>))</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>How many customers were male and how many were female? Compute the result using the <code>table</code> function.</li>
+</ol>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co">## Answer</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="co">## Female   Male </span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co">## 112     88 </span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="co">## Until now we have summarised </span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co">## numeric variables (Age) using mean/median/quartiles, minimum and maximum.</span></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7"><span class="co">## For nominally scaled variables like Gender the above approach does not work, though.</span></a>
+<a class="sourceLine" id="cb58-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="co">## Nominal scales assign labels to objects and the labels have no apparent numeric meaning, e.g. gender (Male/Female)</span></a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"><span class="co">## employment status (unemployed/employed/retired), etc.</span></a>
+<a class="sourceLine" id="cb58-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb58-12" data-line-number="12"><span class="co">## An appropriate summary for these types of variables is the frequency table.</span></a>
+<a class="sourceLine" id="cb58-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb58-14" data-line-number="14">freqGender &lt;-<span class="st"> </span><span class="kw">table</span>(mall<span class="op">$</span>Gender)</a>
+<a class="sourceLine" id="cb58-15" data-line-number="15">freqGender</a></code></pre></div>
+<pre><code>## 
+## Female   Male 
+##    112     88</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co">## A common way to graphically present the frequencies is the bar chart</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="kw">barplot</span>(freqGender)</a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="kw">title</span>(<span class="st">&#39;Gender distribution&#39;</span>)</a></code></pre></div>
+<p><img src="econometrics2020-assignments_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="co">## The frequency table simply contains the number of male customers and the number of female customers</span></a>
+<a class="sourceLine" id="cb61-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="co">## Alternatively you can count the number of times &quot;Female&quot; occurs in the</span></a>
+<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="co">## column &quot;Gender&quot; (see question j)</span></a>
+<a class="sourceLine" id="cb61-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb61-6" data-line-number="6">isFemale &lt;-<span class="st"> </span>(mall<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;Female&quot;</span>)</a>
+<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="kw">sum</span>(isFemale)</a></code></pre></div>
+<pre><code>## [1] 112</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Is there a difference (on average) between the age of female and male customers?</li>
+</ol>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co">## In this task we need to compare </span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="co">## the average age of male and female customers</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="co">## First we create a logical vector that is TRUE</span></a>
+<a class="sourceLine" id="cb63-5" data-line-number="5"><span class="co">## if the customer is male and FALSE otherwise </span></a>
+<a class="sourceLine" id="cb63-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb63-7" data-line-number="7"><span class="co">## First we compute the average age for male customers. Then </span></a>
+<a class="sourceLine" id="cb63-8" data-line-number="8"><span class="co">## we use that vector to select only the age values of the male</span></a>
+<a class="sourceLine" id="cb63-9" data-line-number="9"><span class="co">## customers and finally we compute the mean of these values.</span></a>
+<a class="sourceLine" id="cb63-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb63-11" data-line-number="11">isMale &lt;-<span class="st"> </span>mall<span class="op">$</span>Gender <span class="op">==</span><span class="st"> &quot;Male&quot;</span></a>
+<a class="sourceLine" id="cb63-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb63-13" data-line-number="13"><span class="co">## </span></a>
+<a class="sourceLine" id="cb63-14" data-line-number="14">ageMaleCustomers &lt;-<span class="st"> </span>mall<span class="op">$</span>Age[isMale]</a>
+<a class="sourceLine" id="cb63-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb63-16" data-line-number="16">avgAgeMaleCustomers &lt;-<span class="st"> </span><span class="kw">mean</span>(ageMaleCustomers)</a>
+<a class="sourceLine" id="cb63-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb63-18" data-line-number="18"><span class="co">## Repeat the same for the female customers</span></a>
+<a class="sourceLine" id="cb63-19" data-line-number="19"><span class="co">## Note that &quot;!&quot; negates a logical vector. This works</span></a>
+<a class="sourceLine" id="cb63-20" data-line-number="20"><span class="co">## because we have only two categories Male/Female</span></a>
+<a class="sourceLine" id="cb63-21" data-line-number="21"></a>
+<a class="sourceLine" id="cb63-22" data-line-number="22">ageFemaleCustomers &lt;-<span class="st"> </span>mall<span class="op">$</span>Age[<span class="op">!</span>isMale]</a>
+<a class="sourceLine" id="cb63-23" data-line-number="23">avgAgeFemaleCustomers &lt;-<span class="st"> </span><span class="kw">mean</span>(ageFemaleCustomers)</a>
+<a class="sourceLine" id="cb63-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb63-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb63-26" data-line-number="26"><span class="co">## The average age of female customers is: 38.09</span></a>
+<a class="sourceLine" id="cb63-27" data-line-number="27"><span class="co">## The average age of male customers is: 39.8</span></a>
+<a class="sourceLine" id="cb63-28" data-line-number="28"><span class="co">## The female customers were therefore</span></a>
+<a class="sourceLine" id="cb63-29" data-line-number="29">avgAgeFemaleCustomers <span class="op">-</span><span class="st"> </span>avgAgeMaleCustomers</a></code></pre></div>
+<pre><code>## [1] -1.708604</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co">## years years younger (on average) than the male customers.</span></a></code></pre></div>
+<ol start="13" style="list-style-type: decimal">
+<li>Use a box plot to compare the distribution of age by gender.</li>
+</ol>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co">## Often it is quite useful to compare the distribution </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="co">## of a variable between groups.</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co">## The boxplot is one of the most important</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co">## data displays for this task</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co">## Here we create a boxplot for the distribution of age</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"><span class="co">## between male and female customers</span></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"><span class="kw">boxplot</span>(Age <span class="op">~</span><span class="st"> </span>Gender, <span class="dt">data =</span> mall, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"><span class="kw">title</span>(<span class="st">&#39;Boxplot for Age by Gender&#39;</span>)</a></code></pre></div>
+<p><img src="econometrics2020-assignments_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co">## The boxplot displays the median (thick line in the middle)</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="co">## and hinges (roughly corresponding to the first and third quartiles)</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co">## For more on boxplots and how to interpret these, refer to Heumann et al (2015), p. 56</span></a></code></pre></div>
+<ol start="14" style="list-style-type: decimal">
+<li>Use a scatter plot to examine how Score varies with age. Interpret the result.</li>
+</ol>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="co">## In the following assume that the score column contains a measurement of purchasing propensity</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="co">## of the customers (i.e. customers with higher score tend to spend more on purchases in the mall and</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">## customers with a low score tend to spend less in the mall)</span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="co">## In this task we would like to create a scatterplot of Age and Score to examine the</span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="co">## association pattern between the two variables</span></a>
+<a class="sourceLine" id="cb68-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb68-8" data-line-number="8"><span class="kw">plot</span>(mall<span class="op">$</span>Age, mall<span class="op">$</span>Score, <span class="dt">xlab =</span> <span class="st">&quot;Age (years)&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Score&quot;</span>)</a>
+<a class="sourceLine" id="cb68-9" data-line-number="9"><span class="kw">title</span>(<span class="st">&#39;Score and age plot&#39;</span>)</a></code></pre></div>
+<p><img src="econometrics2020-assignments_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co">## Interpretation: the scatter plot indicates</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="co">## that customers over 40 years of age tend to </span></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">## spend less (lower average score) than</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co">## younger customers (18 - 40 years old)</span></a></code></pre></div>
+</div>
+<div id="assignment-2-linear-regression-1" class="section level2">
+<h2><span class="header-section-number">2.2</span> Assignment 2 (Linear regression 1)</h2>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-35" class="exercise"><strong>Exercise 2.4  (Constant only linear model)  </strong></span>You can find the code for this exercise <a href="here">https://github.com/feb-uni-sofia/econometrics2020-solutions/blob/master/problem_set_2/Problem_1.R</a>.</p>
+<p><strong>Disclaimer</strong>: As in the previous homework, please note that the dataset used here is simplified for <em>ease of use</em> and the analysis here
+MUST be viewed as an exercise, not real-world research! For the full dataset always refer to the data source!</p>
+The dataset <code>linton</code> is an adapted version of the data <span class="citation">Linton et al. (<a href="#ref-Linton2020">2020</a>)</span> use to study the incubation period of SARS-CoV-19, the virus that causes COVID19. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the variable <code>Incubation</code><br />
+that measures the time in days from exposure to the virus to symptoms onset.
+</div>
+
+<p>Before you begin you may find the following source useful:</p>
+<ul>
+<li>Simple regression model: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 249-259.</li>
+<li>Hypothesis testing: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 219-221.</li>
+<li>Confidence interval: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 197-199.</li>
+<li>Normal distribution: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 166-169.</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li>Read and download the data (already done in the starter code)</li>
+<li>Let <span class="math inline">\(y_i\)</span> denote the incubation time for patient <span class="math inline">\(i = 1,\ldots,n\)</span>. Let <span class="math inline">\(u_i \sim N(0, \sigma ^ 2)\)</span> be a normally distributed random variable with zero mean and variance <span class="math inline">\(\sigma ^ 2\)</span>. Furthermore, assume that the error terms <span class="math inline">\(u_i\)</span> are independent. Fit the linear regression model:</li>
+</ol>
+<p><span class="math display" id="eq:hw1-regression-model">\[\begin{align}
+  y_i = \beta_0 + u_i, \quad i = 1,\ldots,n. \tag{2.1}
+\end{align}\]</span></p>
+<p><em>Hint</em>: use the <code>lm</code> function in R.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Incubation <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> linton) <span class="co">## This instructs lm to use only a constant</span></a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Print the summary of the regression fit</li>
+</ol>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">  <span class="kw">summary</span>(fit)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Write down the estimated regression equation (as a comment in the code).</p></li>
+<li><p>What is the meaning of the intercept <span class="math inline">\(\beta_0\)</span> in the model? Write your answer in plain language as a comment in the code.</p></li>
+<li><p>Given the hypothesis:</p></li>
+</ol>
+<p><span class="math display" id="eq:hw2-alternative-hypothesis" id="eq:hw2-null-hypothesis">\[\begin{align}
+  H_0: \beta_0 = 8 \tag{2.2}\\
+  H_1: \beta_0 \neq 8 \tag{2.3}
+\end{align}\]</span></p>
+<ul>
+<li>Explain the meaning of <a href="assignments.html#eq:hw2-null-hypothesis">(2.2)</a> in plain language.</li>
+<li>Using the regression output, test the hypothesis at a 5 percent significance level and write down your decision to
+reject or not to reject the null hypothesis.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Estimate a 95 percent confidence interval for <span class="math inline">\(\beta_0\)</span>.</p></li>
+<li><p>Using the regression output, estimate the probability that a randomly chosen person will have an incubation period
+between 5 and 10 days.</p></li>
+<li><p>Do you see any problems with the choice of the statistical model in <a href="assignments.html#eq:hw1-regression-model">(2.1)</a>?</p></li>
+</ol>
+<p>First we download and read the data.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">linton &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/data%2Flinton2020_complete_obs.csv?alt=media&amp;token=1ba3e0d4-658b-4639-ae5b-408e9e109047&#39;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p>Next we estimate the regression model:
+<span class="math display">\[\begin{align*}
+  y_i = \beta_0 + u_i, \quad u_i \sim N(0, \sigma ^ 2)
+\end{align*}\]</span></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Incubation <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> linton)</a></code></pre></div>
+<p>and print the result of the fit summary:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">  <span class="kw">summary</span>(fit)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Incubation ~ 1, data = linton)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8947 -2.3947 -1.3947  0.6053 19.1053 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   5.3947     0.4247    12.7   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 4.534 on 113 degrees of freedom</code></pre>
+<p>The estimated regression equation is
+<span class="math display" id="eq:linreg-constant-est-eq">\[\begin{align}
+  \hat{y} = \hat{\beta_0}. \tag{2.4}
+\end{align}\]</span>
+Inserting the estimate for <span class="math inline">\(\beta_0\)</span> (look at the regression summary) into <a href="assignments.html#eq:linreg-constant-est-eq">(2.4)</a> we obtain
+<span class="math display">\[\begin{align}
+  \hat{y} = 5.39.
+\end{align}\]</span>
+In order to interpret the result note that the definition of the model implies that the incubation times <span class="math inline">\(y\)</span> are normally distributed with mean <span class="math inline">\(\beta_0\)</span> and variance <span class="math inline">\(\sigma ^ 2\)</span>. To see this note that <span class="math inline">\(\beta_0\)</span> is <em>not</em> a random variable. It is a <em>fixed</em> real number, therefore its variance is zero and its expected value is simply <span class="math inline">\(\beta_0\)</span>.</p>
+<p><span class="math display">\[\begin{align}
+  E(y) &amp; = E(\beta_0 + u) \\
+       &amp; = E(\beta_0) + E(u) \\
+       &amp; = \beta_0 + 0 \\
+       &amp; = \beta_0
+\end{align}\]</span>
+<span class="math display">\[\begin{align}
+  Var(y) &amp; = Var(\beta_0 + u) \\
+       &amp; = Var(\beta_0) + Var(u) \\
+       &amp; = 0 + \sigma ^ 2 \\
+       &amp; = \sigma ^ 2
+\end{align}\]</span></p>
+<p>Therefore we have that
+<span class="math display" id="eq:distribution-y">\[\begin{align}
+y \sim N(\beta_0, \sigma ^ 2). \tag{2.5}
+\end{align}\]</span>
+The coefficient <span class="math inline">\(\beta_0\)</span> is simply the <em>expected</em> incubation time.</p>
+<p>OLS estimator.</p>
+<p>Given the data model in <a href="assignments.html#eq:hw1-regression-model">(2.1)</a> our goal is to derive a plausible “guess” for the model parameters: <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\sigma ^2\)</span>. Let us denote with <span class="math inline">\(\hat{y}_i\)</span> the predicted value for the <span class="math inline">\(i\)</span>-th observation <span class="math inline">\(y_i\)</span> based on model. Let us say that we guess, for now rather arbirarily that <span class="math inline">\(\beta_0 = 8\)</span>. With this value we are able to use the model to predict the incubation time for a new patient. As the espected value is now 9 days, our prediction for a new patient would be the expected prediction:</p>
+<p><span class="math display">\[\begin{align}
+  \hat{y} = 9.
+\end{align}\]</span></p>
+<p>Are these predictions good? To answer this question we need to define what is a good prediction and what is a bad prediction. We can evaluate the quality of our prediction with the predicted incubation times <span class="math inline">\(\hat{y}_1,\ldots,\hat{y}_n\)</span> when we compare these to the actually observed incubation times <span class="math inline">\(y_1, \ldots,y_n\)</span>. Loosely speaking predictions (model) that are far away from the observed values (reality) will be of little use. This might lead us to the idea to base our “guess” for <span class="math inline">\(\beta_0\)</span> on the data in such a way so that the predicted values of the model (predictions) are as close as possible to the observed values (reality). In other words, the estimate must minimise the distance between the model and the reality (observations). Since we have involved the notion of distance, we need to give it a more precise mathematical meaning in order to be able to minimise it. Consider the difference between an observed and a predicted value for some observation <span class="math inline">\(i\)</span>.</p>
+<p><span class="math display" id="eq:residual-def">\[\begin{align}
+  r_i = y_i - \hat{y}_i \tag{2.6}
+\end{align}\]</span></p>
+<p>This value is called the <em>residual</em> of observation <span class="math inline">\(i\)</span>. For a good model the residuals <span class="math inline">\(r_i\)</span> should be small. The prdinary least squares method (OLS) minimises the sum of squared residuals over all observations. Note that the <em>residual</em> <span class="math inline">\(r_i\)</span> is <strong>not</strong> the same as the <em>error term</em> <span class="math inline">\(u_i\)</span>, hence the different names and the different symbols! The error terms are generally unobserved!</p>
+<p><span class="math display" id="eq:rss">\[\begin{align}
+  RSS = \sum_{i = 0} ^ n (y_i - \hat{y}_i) ^ 2. \tag{2.7}
+\end{align}\]</span></p>
+<p>As the predicted values depend on <span class="math inline">\(\hat{\beta_0}\)</span> the residual sum of squares also depends on it.</p>
+<p><span class="math display" id="eq:rss-beta0">\[\begin{align}
+  RSS(\hat{\beta_0}) = \sum_{i = 0} ^ n (y_i - \hat{y}_i) ^ 2 \tag{2.8}.
+\end{align}\]</span></p>
+<p>Let us find a value for <span class="math inline">\(\hat{\beta}_0\)</span> that makes the residual sum of squares <a href="assignments.html#eq:rss-beta0">(2.8)</a> as small as possible (hence the name: <em>least squares</em>). First we will expand the parenthesis and obtain:</p>
+<p><span class="math display" id="eq:rss-beta-0-simplified">\[\begin{align}
+  RSS(\hat{\beta_0}) &amp; = \sum_{i = 0} ^ n (y_i - \hat{y}_i) ^ 2 \\
+                     &amp; = \sum_{i = 0} ^ {n}(y_i^2 - 2y_i\hat{y}_i + \hat{y}_i^2) \\
+                     &amp; = \sum_{i = 0} ^ {n}y_i^2 - 2 \sum_{i = 0} ^ n y_i\hat{y}_i + \sum_{i=0}^n \hat{y}_i^2 \\
+                     &amp; = \sum_{i = 0} ^ {n}y_i^2 - 2 \sum_{i = 0} ^ n y_i\hat{\beta}_0 + \sum_{i=0}^n \hat{\beta}_0^2 \\
+                     &amp; = \sum_{i = 0} ^ {n}y_i^2 - 2 \hat{\beta}_0\sum_{i = 0} ^ n y_i + n \hat{\beta}_0^2 \\
+                     &amp; = \frac{n}{n}\sum_{i = 0} ^ {n}y_i^2 - 2 \hat{\beta}_0\frac{n}{n}\sum_{i = 0} ^ n y_i + n \hat{\beta}_0^2 \\
+                     &amp; = n\overline{y^2} - 2 \hat{\beta}_0 n\bar{y} + n \hat{\beta}_0^2 \tag{2.9}.
+\end{align}\]</span></p>
+<p>Let us find its first derivative with respect to <span class="math inline">\(\hat{\beta}_0\)</span>. The first term in the sum in <a href="assignments.html#eq:rss-beta-0-simplified">(2.9)</a> <span class="math inline">\(\overline{y^2}\)</span> is simply <span class="math inline">\(n\)</span> times the average of the squared values of <span class="math inline">\(y\)</span> and it does not depend on <span class="math inline">\(\hat{\beta}_0\)</span>. The average of <span class="math inline">\(y\)</span> in the second term in the sum (<span class="math inline">\(\bar{y}\)</span>) also does not depend on <span class="math inline">\(\hat{\beta}_0\)</span>. Therefore we can treat both <span class="math inline">\(\bar{y^2}\)</span> and <span class="math inline">\(\bar{y}\)</span> as constants when we differentiate with respect to <span class="math inline">\(\hat{\beta}_0\)</span> (i.e. their derivaties are zero).</p>
+<p><span class="math display" id="eq:rss-beta-0-derivative">\[\begin{align}
+  \frac{\partial RSS(\hat{\beta}_0)}{\partial \hat{\beta}_0} = 0 - 2n\bar{y} + 2n\hat{\beta}_0. \tag{2.10}
+\end{align}\]</span></p>
+<p>To find the extreme values of <span class="math inline">\(RSS(\hat{\beta}_0)\)</span> we set the derivative in <a href="assignments.html#eq:rss-beta-0-derivative">(2.10)</a> to zero and solve the equation.</p>
+<p><span class="math display">\[\begin{align}
+  \frac{\partial RSS(\hat{\beta}_0)}{\partial \hat{\beta}_0} &amp; = - 2n\bar{y} + 2n\hat{\beta}_0 = 0 \\
+  \implies \hat{\beta}_0 = \bar{y}.
+\end{align}\]</span></p>
+<p>The second derivative of <span class="math inline">\(RSS(\hat{\beta}_0)\)</span> with respect to <span class="math inline">\(\hat{\beta}_0\)</span> is</p>
+<p><span class="math display">\[\begin{align}
+  \frac{\partial^2 RSS(\hat{\beta}_0)}{\delta \hat{\beta}_0 ^2} &amp; = 2n &gt; 0.
+\end{align}\]</span></p>
+<p>As the second derivative is positive, <span class="math inline">\(RSS(\hat{\beta}_0)\)</span> has a minimum at <span class="math inline">\(\hat{\beta}_0 = \bar{y}\)</span>.</p>
+<p>As you see in the regression output, the estimate for <span class="math inline">\(\beta_0\)</span> equals the sample mean of the incubation times.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">fit[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## $coefficients
+## (Intercept) 
+##    5.394737</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">mean</span>(linton<span class="op">$</span>Incubation)</a></code></pre></div>
+<pre><code>## [1] 5.394737</code></pre>
+<p>The second parameter in model <a href="assignments.html#eq:hw1-regression-model">(2.1)</a> is the variance of the error term <span class="math inline">\(u\)</span>: <span class="math inline">\(\sigma ^ 2\)</span>.</p>
+<p>We can estimate it using the <em>sample variance</em> of <span class="math inline">\(y\)</span>:
+<span class="math display" id="eq:sample-variance">\[\begin{align}
+  S(y) = \frac{1}{n - 1} \sum_{i = 1}^n (y_i - \bar{y}) ^ 2. \tag{2.11}
+\end{align}\]</span></p>
+<p>Take care to remember the difference between the <em>variance</em> of <span class="math inline">\(u\)</span> which is a parameter of the distributions of <span class="math inline">\(u\)</span> and <span class="math inline">\(y\)</span>, as we see from <a href="assignments.html#eq:distribution-y">(2.5)</a>. The <em>sample variance</em> is a function of the data (<span class="math inline">\(y_1, y_2,\ldots,y_n\)</span>) used to <em>estimate</em> <span class="math inline">\(\sigma ^ 2\)</span>. The value of the sample variance changes when the data changes. <span class="math inline">\(\sigma ^ 2\)</span> does not change with the data!</p>
+<p>Note that the residual sum of squares <a href="assignments.html#eq:rss">(2.7)</a> reduces to <span class="math inline">\(n - 1\)</span> times the sample variance, because <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 = \bar{y}\)</span> for each <span class="math inline">\(i=1,\ldots,n\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+  RSS &amp; = \sum_{i = 1}^n (y_i - \hat{y}_i) ^ 2 \\
+      &amp; = \sum_{i = 1}^n (y_i - \bar{y}) ^ 2 \\
+      &amp; = (n - 1) S(y).
+\end{align}\]</span></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Heumann2016">
+<p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
+</div>
+<div id="ref-Linton2020">
+<p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="homeworks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/feb-uni-sofia/econometrics2020-solutions/edit/master/01-assignments.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["econometrics2020-assignments.pdf", "econometrics2020-assignments.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

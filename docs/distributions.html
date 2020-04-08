@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Homeworks | Introduction to econometrics</title>
+  <title>Chapter 4 Distributions | Introduction to econometrics</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Homeworks | Introduction to econometrics" />
+  <meta property="og:title" content="Chapter 4 Distributions | Introduction to econometrics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="feb-uni-sofia/econometrics2020-solutions" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Homeworks | Introduction to econometrics" />
+  <meta name="twitter:title" content="Chapter 4 Distributions | Introduction to econometrics" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Boyko Amarov" />
 
 
-<meta name="date" content="2020-04-04" />
+<meta name="date" content="2020-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="assignments.html"/>
+<link rel="prev" href="homeworks.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -676,10 +676,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
-<li class="chapter" data-level="2" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i><b>2</b> Assignments</a></li>
+<li class="chapter" data-level="2" data-path="assignments.html"><a href="assignments.html"><i class="fa fa-check"></i><b>2</b> Assignments</a><ul>
+<li class="chapter" data-level="2.1" data-path="assignments.html"><a href="assignments.html#assignment-1"><i class="fa fa-check"></i><b>2.1</b> Assignment 1</a></li>
+<li class="chapter" data-level="2.2" data-path="assignments.html"><a href="assignments.html#assignment-2-linear-regression-1"><i class="fa fa-check"></i><b>2.2</b> Assignment 2 (Linear regression 1)</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="homeworks.html"><a href="homeworks.html"><i class="fa fa-check"></i><b>3</b> Homeworks</a><ul>
 <li class="chapter" data-level="3.1" data-path="homeworks.html"><a href="homeworks.html#homework-1"><i class="fa fa-check"></i><b>3.1</b> Homework 1</a></li>
-<li class="chapter" data-level="3.2" data-path="homeworks.html"><a href="homeworks.html#homework-2"><i class="fa fa-check"></i><b>3.2</b> Homework 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>4</b> Distributions</a><ul>
+<li class="chapter" data-level="4.1" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>4.1</b> The normal distribution</a></li>
+<li class="chapter" data-level="4.2" data-path="distributions.html"><a href="distributions.html#chi2-distribution"><i class="fa fa-check"></i><b>4.2</b> Chi square distribution</a></li>
+<li class="chapter" data-level="4.3" data-path="distributions.html"><a href="distributions.html#t-distribution"><i class="fa fa-check"></i><b>4.3</b> t-distribution</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/feb-uni-sofia/econometrics2020-solutions" target="blank">Github</a></li>
@@ -701,144 +708,165 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="homeworks" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Homeworks</h1>
-<div id="homework-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> Homework 1</h2>
-<p>Github classroom link: <a href="https://classroom.github.com/g/vguWjRNd">https://classroom.github.com/g/vguWjRNd</a></p>
-<p>Please choose <em>one</em> of the following problems. Write your solution in a file named <code>Problem_1.R</code> or <code>Problem_2.R</code> depending on the number of the problem that you have picked. When you are finished, upload your code to your team’s homework repository by pasting it in one of the files there: <code>Problem_1.R</code> or <code>Problem_2.R</code>.</p>
-
-<div class="exercise">
-<p><span id="exr:unnamed-chunk-1" class="exercise"><strong>Exercise 3.1  </strong></span>In the wake of the COVID-19 outbreak data analysis can yield important insights that can help to contain the disease and ultimately to save lives. The dataset <code>COVID19_2020_open_line_list</code> contains data on patients with confirmed COVID19 infections in the United States, Japan and China (outside Hubei province). <strong>Disclaimer</strong>: This is an <em>exercise</em> dataset. Cases with missing or incomplete data on age and sex were removed. When age was given as an interval (e.g. 0-10 years) it was replaced with the midpoint of the interval. <em>Do not</em> draw any real-life conclusions based on the analysis here! For the full dataset refer to <span class="citation">Xu et al. (<a href="#ref-Xu2020">2020</a>)</span>.</p>
-<ul>
-<li><strong>ID</strong> (numeric): Case id.</li>
-<li><strong>date_confirmation</strong> (date): Date when the infection was confirmed.</li>
-<li><strong>sex</strong> (character): Patients’ sex: male/female</li>
-<li><strong>age</strong> (numeric): Patients’ age in years.</li>
-<li><strong>province</strong> (character): Province where the infection was confirmed.</li>
-<li><strong>country</strong> (character): Country</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li>Download and read the dataset and store it in an object called .</li>
-<li>How many patients are there in the dataset?</li>
-<li>What are the earliest and latest date of infection confirmation?</li>
-<li>What is the average age of the patients?</li>
-<li>How many men and how many women are there in the sample?</li>
-<li>Plot the frequency distribution of sex using a bar-chart.</li>
-<li>What was the age of the youngest woman?</li>
-<li>What was the age of the oldest man?</li>
-<li>Is there a difference between the average age of male and female patients?</li>
-<li>Compare the distribution of age between the countries using a box-plot. Interpret the plot (write your answer as a comment in the code).
-</div></li>
-</ol>
-
-<div class="exercise">
-<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Exercise 3.2  </strong></span>Orley Ashenfelter, an Economics Professor at Princeton University claimed to have found a method to predict the quality of Bordeaux (<a href="http://www.liquidasset.com/orley.htm" class="uri">http://www.liquidasset.com/orley.htm</a>)[wine]. In this problem we will borrow data from (<a href="http://www.liquidasset.com/winedata.htm" class="uri">http://www.liquidasset.com/winedata.htm</a>)[<a href="http://www.liquidasset.com/winedata.htm" class="uri">http://www.liquidasset.com/winedata.htm</a>]. The dataset contains information about the prices of Bordeaux wines produced between 1952 and 1980 organised in the following columns:</p>
-<ul>
-<li><strong>Year</strong>: Year in which the wine was produced (unique).</li>
-<li><strong>LogPrice</strong>: Logarithm of the price of the wine.</li>
-<li><strong>WinterRain</strong>: Winter rain in the Bordeaux region (October to March, in ml).</li>
-<li><strong>Temperature</strong>: Average temperature in the region (April to September, in degrees Celsius).</li>
-<li><strong>HarvestRain</strong>: Harvest rain in the region (August and September, in ml).</li>
-<li><strong>TimeYears</strong>: Time since vintage in years.</li>
-</ul>
-<p>For a short, entertaining, story about Ashenfelter’s analysis and his predictions of wine prices, read the first few pages of <span class="citation">Ayres (<a href="#ref-Ayres2008">2008</a>)</span>, freely available on (<a href="https://books.google.bg/books?id=brHyklsoPRMC&amp;printsec=frontcover&amp;hl=bg#v=onepage&amp;q&amp;f=false" class="uri">https://books.google.bg/books?id=brHyklsoPRMC&amp;printsec=frontcover&amp;hl=bg#v=onepage&amp;q&amp;f=false</a>)[books.google.com].</p>
-<ol style="list-style-type: decimal">
-<li>Download and read the dataset and store in a variable called <code>wines</code>.</li>
-<li>Create a new variable (in the <code>data.frame</code> <code>wines</code>) called <code>Price</code> by converting <code>LogPrice</code> back to its original scale. <em>Hint</em>: use the <code>exp</code> function.</li>
-<li>How many years are recorded in the dataset?</li>
-<li>What was the average temperature in 1953? Write your answer as a comment in the code.</li>
-<li>Which was the coldest year recorded?</li>
-<li>Compute the average wine price for hot and cold years. Define a cold year to be a year with below average temperature.</li>
-<li>Are wines produced during cold years more valuable (on average) than wines produced during hot years?</li>
-<li>How many years had below-average temperature? <em>Hint</em>: use the <code>table</code> function.</li>
-<li>Compare the distribution of prices between hot and cold years using a box-plot. Interpret the plot.</li>
-<li>Create a scatterplot for wine price and the rainfall level during harvest . Do you see any association pattern? Write your answer as a comment in the code.
-</div></li>
-</ol>
+<div id="distributions" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Distributions</h1>
+<div id="normal-distribution" class="section level2">
+<h2><span class="header-section-number">4.1</span> The normal distribution</h2>
+<p>Let us assume that each patient not yet admitted has a fixed but unknown time and that the times are normally distributed in the population (of unseen patients) with some unknown mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>The density of the normal distribution is given by:</p>
+<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi \sigma ^ 2}} e ^ {-\frac{1}{2}(\frac{x - \mu}{\sigma}) ^ 2}, \quad x \in \mathbf{R}.\]</span></p>
+<p>The formula might look somewhat intimidating but you will find that working with it is not that hard.</p>
+<p>We will be using the normal distribution quite often and it is inconvinient to write the density often. Therere when we refer to a variable following a normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> we will simply write <span class="math inline">\(X \sim N(\mu, \sigma)\)</span>.</p>
+<p>Let us now focus on the treatment time of a that we select at random from the population. We don’t know how many days of treatment will be required for that patient. Let us denote the unknown time with <span class="math inline">\(X\)</span> that can take values in <span class="math inline">\(\mathbf{R}\)</span> <span class="math inline">\((-\infty, +\infty)\)</span>. You may wonder whether negative hospital times make sense and you would be quite right, but let us defer this discussion for now. Let us further assume that <span class="math inline">\(X\)</span> follows a normal distribution with mean <span class="math inline">\(\mu = 14\)</span> and standard deviation <span class="math inline">\(\sigma = 6\)</span> and write for short <span class="math inline">\(X \sim N(14, 6 ^ 2)\)</span>.</p>
+<p>A plot of the density function of <span class="math inline">\(N(14, 6 ^ 2)\)</span> looks like this:</p>
+<p><img src="econometrics2020-assignments_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>The expected value of <span class="math inline">\(X\)</span> is given by:</p>
+<p><span class="math display">\[E(X) = \int_{-\infty}^{+\infty} xf(x)dx\]</span></p>
+<p>it can be shown that the expected value of a normally distributed variable is:</p>
+<p><span class="math display">\[E(X) = \mu\]</span></p>
+<p>it can futher be shown that the variance of the X is:</p>
+<p><span class="math display">\[Var(X) = \sigma ^ 2\]</span>
+Closely related to the variance is the standard deviation which is simply the square root of the variance:</p>
+<p><span class="math display">\[Sd(X) = \sqrt{Var(X)} = \sigma\]</span></p>
+<p>Both the expected value and the variance are summaries of the distribution function that measure specific aspects of that
+function. Think of the expected value as the center of the distribution and of the variance as its spread. Experiment with
+the code and plot a couple of density functions with different parameters. You will notice that changing <span class="math inline">\(\mu\)</span> will move the
+curve along the <span class="math inline">\(x\)</span>-axis while changing <span class="math inline">\(\sigma\)</span> affects its shape: the lower the standard deviation the steeper the bell (XXX) curve.</p>
+<div class="figure" style="text-align: center"><span id="fig:normal-densities"></span>
+<img src="econometrics2020-assignments_files/figure-html/normal-densities-1.png" alt="Normal densities" width="672" />
+<p class="caption">
+Figure 4.1: Normal densities
+</p>
 </div>
-<div id="homework-2" class="section level2">
-<h2><span class="header-section-number">3.2</span> Homework 2</h2>
-<p>Github classroom link: <a href="https://classroom.github.com/g/qogtEQ5b">https://classroom.github.com/g/qogtEQ5b</a></p>
-<p><strong>Disclaimer</strong>: As in the previous homework, please note that the dataset used here is simplified for <em>ease of use</em> and the analysis here
-MUST be viewed an an exercise, not real-world research! For the full dataset always refer to the data source!</p>
+<p>Refer to <a href="distributions.html#fig:normal-densities">4.1</a>.</p>
 
-<div class="exercise">
-<p><span id="exr:unnamed-chunk-3" class="exercise"><strong>Exercise 3.3  </strong></span>The dataset <code>linton</code> is an adapted version of the data <span class="citation">Linton et al. (<a href="#ref-Linton2020">2020</a>)</span> use to study the incubation period of SARS-CoV-19, the virus that causes COVID19. It contains 114 observations on COVID19 patients, mainly from mainland China. For this homework we are only interested in the variable <code>Incubation</code><br />
-that measures the time in days from exposure to the virus to symptoms onset.</p>
-<p>Before you begin you may find the following source useful:</p>
-<ul>
-<li>Simple regression model: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 249-259.</li>
-<li>Hypothesis testing: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 219-221.</li>
-<li>Confidence interval: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 197-199.</li>
-<li>Normal distribution: <span class="citation">Heumann and Shalabh (<a href="#ref-Heumann2016">2016</a>)</span>, pp. 166-169.</li>
-</ul>
-<ol style="list-style-type: decimal">
-<li><p>Read and download the data (already done in the starter code)</p></li>
-<li><p>Let <span class="math inline">\(y_i\)</span> denote the incubation time for patient <span class="math inline">\(i = 1,\ldots,n\)</span>. Let <span class="math inline">\(u_i \sim N(0, \sigma ^ 2)\)</span> be a normally distributed random variable with zero mean and variance <span class="math inline">\(\sigma ^ 2\)</span>. Furthermore, assume that the error terms <span class="math inline">\(u_i\)</span> are independent. Fit the linear regression model:</p></li>
-</ol>
-<p><span class="math display" id="eq:hw1-regression-model">\[\begin{align}
-  y_i = \beta_0 + u_i, \quad i = 1,\ldots,n. \tag{3.1}
+<div class="theorem">
+<span id="thm:normal-distribution-symmetry" class="theorem"><strong>Theorem 4.1  (Symmetry of the normal distribution)  </strong></span> The normal distribution is symmetrical around its expected value. Let <span class="math inline">\(a\)</span> be any real number.
+<span class="math display">\[\begin{align}
+    f(\mu + a) = f(\mu - a)
+  \end{align}\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span>  <span class="math display">\[\begin{align}
+  f(\mu + a) &amp; = \frac{1}{\sqrt{2\pi\sigma ^ 2}} e ^ {\frac{1}{2}\left(\frac{\mu + a - \mu}{\sigma}\right) ^ 2} \\
+              &amp; = \frac{1}{\sqrt{2\pi\sigma ^ 2}} e ^ {\frac{1}{2}\left(\frac{a}{\sigma}\right) ^ 2} \\
+              &amp; = \frac{1}{\sqrt{2\pi\sigma ^ 2}} e ^ {\frac{1}{2}\left(\frac{-a}{\sigma}\right) ^ 2} \\
+              &amp; = f(\mu - a)
+  \end{align}\]</span>
+</div>
+
+<p>The area under the density function gives the probability of events.</p>
+<p><img src="econometrics2020-assignments_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Technically, under some regularity conditions, the expected value of a distribution (we will also speac of the expected value of a random variable following a given distribution) is given by:</p>
+<p><span class="math display">\[\begin{align}
+  E(X) = \int_{-\infty} ^ {+\infty} x f(x) dx.
 \end{align}\]</span></p>
-<p><em>Hint</em>: use the <code>lm</code> function in R.</p>
-</div>
-
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">  fit &lt;-<span class="st"> </span><span class="kw">lm</span>(Incubation <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> linton) <span class="co">## This instructs lm to use only a constant</span></a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>Print the summary of the regression fit</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">  <span class="kw">summary</span>(fit)</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Write down the estimated regression equation (as a comment in the code).</p></li>
-<li><p>What is the meaning of the intercept <span class="math inline">\(\beta_0\)</span> in the model? Write your answer in plain language as a comment in the code.</p></li>
-<li><p>Given the hypothesis:</p></li>
-</ol>
-<p><span class="math display" id="eq:hw2-alternative-hypothesis" id="eq:hw2-null-hypothesis">\[\begin{align}
-  H_0: \beta_0 = 8 \tag{3.2}\\
-  H_1: \beta_0 \neq 8 \tag{3.3}
+<p>The normal distribution with <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma = 1\)</span> is called the standard normal distribution. A normally distributed random variable <span class="math inline">\(X \sim N(\mu, \sigma ^ 2)\)</span> can be standardized by subtracting its mean and deviding by its standard deviation.</p>
+<p><span class="math display">\[\begin{align}
+  Z &amp; = \frac{X - \mu}{\sigma} \\
+  E(Z) &amp; = E\left(\frac{X - \mu}{\sigma}\right) \\
+       &amp; = \frac{E(X) - \mu}{\sigma} \\
+       &amp; = \frac{\mu - \mu}{\sigma} \\
+       &amp; = 0 \\
+  Var(Z) &amp; = Var\left(\frac{X - \mu}{\sigma}\right) \\
+         &amp; = \frac{1}{\sigma ^ 2} Var(X - \mu) \\
+         &amp; = \frac{\sigma ^ 2}{\sigma ^ 2}  \\
+         &amp; = 1
 \end{align}\]</span></p>
-<ul>
-<li>Explain the meaning of <a href="homeworks.html#eq:hw2-null-hypothesis">(3.2)</a> in plain language.</li>
-<li>Using the regression output, test the hypothesis at a 5 percent significance level and write down your decision to
-reject or not to reject the null hypothesis.</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li><p>Estimate a 95 percent confidence interval for <span class="math inline">\(\beta_0\)</span>.</p></li>
-<li><p>Using the regression output, estimate the probability that a randomly chosen person will have an incubation period
-between 5 and 10 days.</p></li>
-<li><p>Do you see any problems with the choice of the statistical model in <a href="homeworks.html#eq:hw1-regression-model">(3.1)</a> (write down your answer as a comment in the code)?
-```</p></li>
-</ol>
+</div>
+<div id="chi2-distribution" class="section level2">
+<h2><span class="header-section-number">4.2</span> Chi square distribution</h2>
+<p>The <span class="math inline">\(\chi^2\)</span> distributions commonly arises in statistical tests. Unlike the normal distribution, the <span class="math inline">\(\chi^2\)</span> distribution has a single parameter called the degrees of freedom.</p>
 
-<div id="refs" class="references">
-<div>
-<p>Ayres, Ian. 2008. <em>Super Crunchers</em>. John Murray Press. <a href="https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html">https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html</a>.</p>
+<div class="definition">
+<span id="def:chi-square" class="definition"><strong>Definition 4.1  </strong></span> Let <span class="math inline">\(Z_1,\ldots,Z_{n}\)</span> be iid standard normal variables (<span class="math inline">\(Z_i \sim N(0, 1)\)</span>). The distribution of the sum of their squares is <span class="math inline">\(\chi^2\)</span> with <span class="math inline">\(n\)</span> degrees of freedom.
 </div>
-<div>
-<p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
+
+<p><span class="math display" id="eq:chi-square-def">\[\begin{align}
+  Z_1 ^2 + Z_2 ^ 2 + \ldots + Z_n^2 \sim \chi^2(n) \tag{4.1}.
+\end{align}\]</span></p>
+<p>It can be shown that the expected value of a <span class="math inline">\(\chi^2(n)\)</span> distributed variable is equal to the degrees of freedom of the distribution.</p>
+<p><span class="math display" id="eq:chi-square-def">\[\begin{align}
+  E(X) = n.
+\end{align}\]</span></p>
+<p>It can be shown that if the variables in the sum @ref\tag{4.1} are subject to <span class="math inline">\(k\)</span> linear restrictions of the form:</p>
+<p><span class="math display">\[\begin{align*}
+  a_{11} Z_1 + a_{12} Z_2 + \ldots + a_{1n} Z_n = b_1 \\
+  \vdots \\
+  a_{kn} Z_1 + a_{22} Z_2 + \ldots + a_{kn} Z_n = b_k
+\end{align*}\]</span></p>
+<p>then the sum of the squared variables follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n - m\)</span> degress of freedom.</p>
+
+<div class="theorem">
+<span id="thm:distr-squared-deviations-mean" class="theorem"><strong>Theorem 4.2  </strong></span> The sum of squared deviations from the mean of <span class="math inline">\(n\)</span> independent normal variables <span class="math inline">\(X_1,\ldots,X_n\)</span> with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma ^ 2\)</span> has a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom.
 </div>
-<div>
-<p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
+
+<p><span class="math display" id="eq:normal-variance-distribution">\[\begin{align}
+  \frac{n}{\sigma ^ 2}\sum_{i = 1} ^ {n} (X_i - \bar{X}) ^ 2  \sim \chi^2(n - 1) \tag{4.2}
+\end{align}\]</span></p>
+<p>Note that the degress of freedom in <a href="distributions.html#eq:normal-variance-distribution">(4.2)</a> are <span class="math inline">\(n - 1\)</span> and not <span class="math inline">\(n\)</span>. The proof of <a href="distributions.html#thm:distr-squared-deviations-mean">4.2</a> is beyond the scope of this course but note that the summands in <a href="distributions.html#eq:normal-variance-distribution">(4.2)</a> are not independent but are required to sum to zero, because these are <em>deviations</em> from the sample mean.</p>
+<p><span class="math display">\[\begin{align}
+  \sum_{i = 1} ^ n (X_i - \bar{X}) &amp; = \sum_{i = 1} ^ n X_i - \sum_{i = 1} ^ n \bar{X}\\
+                                   &amp; = \frac{n}{n}\sum_{i = 1} ^ n X_i - n \bar{X}\\
+                                   &amp; = n\bar{X} - n \bar{X} \\
+                                   &amp; = 0.
+\end{align}\]</span></p>
+<!-- If $X_i \sim N(\mu, \sigma ^ 2)$ then $Z_i = (X_i - \mu) / \sigma $ is a standard normal random variable. -->
+<p>This is a consequence of a restriction on the summands. These are not fully independent as in the definition of the <span class="math inline">\(\chi^2\)</span> distribution but are required to sum to zero, because these are <em>deviations</em> from the sample mean.</p>
+<p>Figure XXX shows a simulation of 1000 realisations from the <span class="math inline">\(\chi^2(2)\)</span>. Notice that the values are all non-negative due to the squares in <a href="#thm:chi-square"><strong>??</strong></a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">B &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">z1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(B)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">z2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(B)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">z3 &lt;-<span class="kw">rnorm</span>(B)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">x &lt;-<span class="st"> </span>z1 <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>z2 <span class="op">^</span><span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>z3 <span class="op">^</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">ggplot</span>(<span class="dt">data =</span> <span class="kw">data.frame</span>(<span class="dt">x =</span> x), <span class="kw">aes</span>(<span class="dt">x =</span> x)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">bins =</span> <span class="dv">35</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="st">  </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dchisq, <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">df =</span> <span class="dv">3</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">3</span>, <span class="dt">lwd =</span> <span class="fl">0.5</span>, <span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Density&#39;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:sim-chisq-3"></span>
+<img src="econometrics2020-assignments_files/figure-html/sim-chisq-3-1.png" alt="Histogram of 1000 realisations from a $\chi^2(3)$ distribution. The vertical line is drawn aat 3 (the expected value of the distribution)." width="672" />
+<p class="caption">
+Figure 4.2: Histogram of 1000 realisations from a <span class="math inline">\(\chi^2(3)\)</span> distribution. The vertical line is drawn aat 3 (the expected value of the distribution).
+</p>
 </div>
-<div>
-<p>Xu, Bo, Moritz U G Kraemer, Bo Xu, Bernardo Gutierrez, Sumiko Mekaru, Kara Sewalk, Alyssa Loskill, et al. 2020. “Open Access Epidemiological Data from the COVID-19 Outbreak.” <em>The Lancet Infectious Diseases</em>, February. Elsevier BV. <a href="https://doi.org/10.1016/S1473-3099(20)30119-5">https://doi.org/10.1016/S1473-3099(20)30119-5</a>.</p>
 </div>
+<div id="t-distribution" class="section level2">
+<h2><span class="header-section-number">4.3</span> t-distribution</h2>
+<p>The t-distribution commonly arises in statistical tests and is used to model processes where extreme events are more probable that under a normal distribution. Its density function is quite involved and we will not present it here. Instead we will visualise its density and compare it to the standard normal distribution.</p>
+<p>The <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n\)</span> degress of freedom arises as the ratio between a standard normal random variable Z and a <span class="math inline">\(\chi^2\)</span> distributed variables.</p>
+
+<div class="theorem">
+<p><span id="thm:t-distribution" class="theorem"><strong>Theorem 4.3  (t distribution)  </strong></span>Let <span class="math inline">\(Z \sim N(0, 1)\)</span> and <span class="math inline">\(X \sim \chi ^ 2 (n)\)</span> and let <span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span> be independent.</p>
+<span class="math display">\[\begin{align}
+  \frac{Z}{\sqrt{X}} \sim t(n).
+\end{align}\]</span>
 </div>
+
+<div class="figure"><span id="fig:standard-normal-t-distributions"></span>
+<img src="econometrics2020-assignments_files/figure-html/standard-normal-t-distributions-1.png" alt="Densities of the standard normal and t-distributions with 1 and 5 degrees of freedom." width="672" />
+<p class="caption">
+Figure 4.3: Densities of the standard normal and t-distributions with 1 and 5 degrees of freedom.
+</p>
 </div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Ayres2008">
-<p>Ayres, Ian. 2008. <em>Super Crunchers</em>. John Murray Press. <a href="https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html">https://www.ebook.de/de/product/23088749/ian_ayres_super_crunchers.html</a>.</p>
-</div>
-<div id="ref-Heumann2016">
-<p>Heumann, Christian, and Michael Schomaker Shalabh. 2016. <em>Introduction to Statistics and Data Analysis</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-46162-5">https://doi.org/10.1007/978-3-319-46162-5</a>.</p>
-</div>
-<div id="ref-Linton2020">
-<p>Linton, Natalie M., Tetsuro Kobayashi, Yichi Yang, Katsuma Hayashi, Andrei R. Akhmetzhanov, Sung-mok Jung, Baoyin Yuan, Ryo Kinoshita, and Hiroshi Nishiura. 2020. “Incubation Period and Other Epidemiological Characteristics of 2019 Novel Coronavirus Infections with Right Truncation: A Statistical Analysis of Publicly Available Case Data.” <em>Journal of Clinical Medicine</em> 9 (2). <a href="https://doi.org/10.3390/jcm9020538">https://doi.org/10.3390/jcm9020538</a>.</p>
-</div>
-<div id="ref-Xu2020">
-<p>Xu, Bo, Moritz U G Kraemer, Bo Xu, Bernardo Gutierrez, Sumiko Mekaru, Kara Sewalk, Alyssa Loskill, et al. 2020. “Open Access Epidemiological Data from the COVID-19 Outbreak.” <em>The Lancet Infectious Diseases</em>, February. Elsevier BV. <a href="https://doi.org/10.1016/S1473-3099(20)30119-5">https://doi.org/10.1016/S1473-3099(20)30119-5</a>.</p>
+<p>From <a href="distributions.html#fig:standard-normal-t-distributions">4.3</a> you can see that the t-distribution with one degree of freedom assigns higher probability to events (intervals) far away from the center, i.e. extreme events. The probability to observe a value greater that 3 under the standard normal distribution is.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">probNormGt3 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
+<p><span class="math display">\[\begin{align}
+  P_{N(0,1)}(X &gt; 3) = 0.0013.
+\end{align}\]</span></p>
+<p>wherease the probability for the same event under a <span class="math inline">\(t(1)\)</span> distribution is</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">probTgt3 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="dv">3</span>, <span class="dt">df =</span> <span class="dv">1</span>)</a></code></pre></div>
+<p><span class="math display">\[\begin{align}
+  P_{t(1)}(X &gt; 3) = 0.1024.
+\end{align}\]</span></p>
+<!-- ## F-distribution -->
+
 </div>
 </div>
             </section>
@@ -846,7 +874,7 @@ between 5 and 10 days.</p></li>
           </div>
         </div>
       </div>
-<a href="assignments.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="homeworks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -878,7 +906,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/feb-uni-sofia/econometrics2020-solutions/edit/master/02-homework-2.Rmd",
+"link": "https://github.com/feb-uni-sofia/econometrics2020-solutions/edit/master/03-distributions.Rmd",
 "text": "Edit"
 },
 "history": {

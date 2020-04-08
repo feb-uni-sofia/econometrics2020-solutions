@@ -30,8 +30,14 @@ always_allow_html: true
   })
 ```
 
-# Preface
+
+# This page is deprecated!
 
 
+Visit the script page to find [notes from the exercise classes](https://feb-uni-sofia.github.io/econometrics-script).
 
 
+Please find the assignments [here](https://feb-uni-sofia.github.io/econometrics-script/assignments.html).
+
+
+For the homeworks please visit this [page](https://feb-uni-sofia.github.io/econometrics-script/homeworks.html).

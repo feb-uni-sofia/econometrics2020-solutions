@@ -1,0 +1,64 @@
+# This page is deprecated!
+
+Visit the script page to find [notes from the exercise classes](https://feb-uni-sofia.github.io/econometrics-script).
+
+
+Please find the assignments [here](https://feb-uni-sofia.github.io/econometrics-script/assignments.html).
+
+
+For the homeworks please visit this [page](https://feb-uni-sofia.github.io/econometrics-script/homeworks.html).
+
+<!-- ## Homework 1 -->
+
+<!-- Github classroom link: [https://classroom.github.com/g/vguWjRNd](https://classroom.github.com/g/vguWjRNd) -->
+
+<!-- Please choose _one_ of the following problems. Write your solution in a file named `Problem_1.R` or `Problem_2.R` depending on the number of the problem that you have picked. When you are finished, upload your code to your team's homework repository by pasting it in one of the files there: `Problem_1.R` or `Problem_2.R`. -->
+
+<!-- ```{exercise} -->
+<!-- In the wake of the COVID-19 outbreak data analysis can yield important insights that can help to contain the disease and ultimately to save lives. The dataset `COVID19_2020_open_line_list` contains data on patients with confirmed COVID19 infections in the United States, Japan and China (outside Hubei province). **Disclaimer**: This is an _exercise_ dataset. Cases with missing or incomplete data on age and sex were removed. When age was given as an interval (e.g. 0-10 years) it was replaced with the midpoint of the interval. _Do not_ draw any real-life conclusions based on the analysis here! For the full dataset refer to @Xu2020.  -->
+
+<!-- - **ID** (numeric): Case id. -->
+<!-- - **date_confirmation** (date): Date when the infection was confirmed. -->
+<!-- - **sex** (character): Patients' sex: male/female -->
+<!-- - **age** (numeric): Patients' age in years. -->
+<!-- - **province** (character): Province where the infection was confirmed. -->
+<!-- - **country** (character): Country -->
+
+
+<!-- 1. Download and read the dataset and store it in an object called \code{patients}. -->
+<!-- 2. How many patients are there in the dataset? -->
+<!-- 3. What are the earliest and latest date of infection confirmation? -->
+<!-- 4. What is the average age of the patients? -->
+<!-- 5. How many men and how many women are there in the sample? -->
+<!-- 6. Plot the frequency distribution of sex using a bar-chart. -->
+<!-- 7. What was the age of the youngest woman? -->
+<!-- 8. What was the age of the oldest man? -->
+<!-- 9. Is there a difference between the average age of male and female patients? -->
+<!-- 10. Compare the distribution of age between the countries using a box-plot. Interpret the plot (write your answer as a comment in the code). -->
+<!-- ``` -->
+
+
+<!-- ```{exercise} -->
+<!-- Orley Ashenfelter, an Economics Professor at Princeton University claimed to have found a method to predict the quality of Bordeaux (http://www.liquidasset.com/orley.htm)[wine]. In this problem we will borrow data from (http://www.liquidasset.com/winedata.htm)[http://www.liquidasset.com/winedata.htm]. The dataset contains information about the prices of Bordeaux wines produced between 1952 and 1980 organised in the following columns: -->
+
+<!-- - **Year**: Year in which the wine was produced (unique). -->
+<!-- - **LogPrice**: Logarithm of the price of the wine. -->
+<!-- - **WinterRain**: Winter rain in the Bordeaux region (October to March, in ml). -->
+<!-- - **Temperature**: Average temperature in the region (April to September, in degrees Celsius). -->
+<!-- - **HarvestRain**: Harvest rain in the region (August and September, in ml). -->
+<!-- - **TimeYears**: Time since vintage in years. -->
+
+<!-- For a short, entertaining, story about Ashenfelter's analysis and his predictions of wine prices, read the first few pages of @Ayres2008, freely available on (https://books.google.bg/books?id=brHyklsoPRMC&printsec=frontcover&hl=bg#v=onepage&q&f=false)[books.google.com]. -->
+
+<!-- 1. Download and read the dataset and store in a variable called `wines`. -->
+<!-- 2. Create a new variable (in the `data.frame` `wines`) called `Price` by converting `LogPrice` back to its original scale. _Hint_: use the `exp` function. -->
+<!-- 3. How many years are recorded in the dataset? -->
+<!-- 4. What was the average temperature in 1953? Write your answer as a comment in the code. -->
+<!-- 5. Which was the coldest year recorded? -->
+<!-- 6. Compute the average wine price for hot and cold years. Define a cold year to be a year with below average temperature. -->
+<!-- 7. Are wines produced during cold years more valuable (on average) than wines produced during hot years? -->
+<!-- 8. How many years had below-average temperature? _Hint_: use the `table` function. -->
+<!-- 9. Compare the distribution of prices between hot and cold years using a box-plot. Interpret the plot. -->
+<!-- 10. Create a scatterplot for wine price and the rainfall level during harvest . Do you see any association pattern? Write your answer as a comment in the code. -->
+<!-- ``` -->
+
