@@ -13,3 +13,154 @@ knitr::opts_chunk$set(echo = FALSE)
 linton <- read.csv('https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/data%2Flinton2020_complete_obs.csv?alt=media&token=1ba3e0d4-658b-4639-ae5b-408e9e109047', stringsAsFactors = FALSE)
 ```
 
+## Model
+
+$$
+  y_i = \beta_0, \quad \beta_0 \in \mathbf{R}, \quad i=1,\ldots,n \\
+  y_i = 5, \quad , \quad i=1,\ldots,n \\
+$$
+```{r}
+plot(x = 1:nrow(linton), y = linton$Incubation)
+abline(h = 5)
+```
+
+- Health, age
+- Immune system
+- Vaccinations?
+
+
+$$
+  y_i = \beta_0 + u_i, u_i \sim N(0, \sigma ^ 2), \quad \beta_0 \in \mathbf{R}
+$$
+$$
+  y_i \sim N(\beta_0, \sigma ^ 2)
+$$
+
+```{r}
+sum(linton$Incubation == 8)
+sum(linton$Incubation <= 8)
+```
+
+Deviations from line?
+- Individual health (immune system strength)
+- Initial exposure different
+- Data measurement
+
+```{r}
+fit <- lm(Incubation ~ 1, data = linton)
+summary(fit)
+mean(linton$Incubation)
+```
+## OLS estimator (KQ-Schätzer)
+
+$$
+  \hat{\beta}_0 = 5
+$$
+$$
+  \hat{y}_i = \hat{\beta}_0
+$$
+$$
+  y_i = \beta_0 + u_i, u_i \sim N(0, \sigma ^ 2) \\
+  u_i = y_i - \beta_0 \\
+  r_i = y_i - \hat{\beta}_0.
+$$
+
+$$
+RSS = \sum_{i = 1}^n (\underbrace{y_i - \hat{y}_i}_{r_i}) ^ 2 \\
+RSS(\hat{\beta}_0) = \sum_{i = 1}^n (\underbrace{y_i - \hat{\beta}_0}_{r_i}) ^ 2 \\
+r_i = y_i - \hat{y}_i \quad (\text{Residual, Residuum})
+$$
+
+
+
+
+
+$$
+  \hat{\beta}_0 = 5.3947 \\
+  \hat{\sigma ^ 2} = 4.534 ^ 2
+$$
+## OLS estimator
+$$
+  \hat{\beta}_0 = \bar{y}
+$$
+$$
+  E(\hat{\beta}_0) = \beta_0 \\
+  Var(\hat{\beta}_0) = ? 
+$$
+
+$$
+  \hat{y}_i = \hat{\beta}_0\\
+  r_i = y_i - \hat{y}_i
+$$
+$$
+  RSS = \sum_{i = 0}^n (y_i - \hat{y}_i) ^ 2
+$$
+$$
+  RSS(\hat{\beta}_0) = \sum_{i = 0}^n (y_i - \hat{\beta}_0) ^ 2
+$$
+
+```{r}
+summary(fit)
+```
+```{r}
+sd(linton$Incubation)
+sd(linton$Incubation) / sqrt(nrow(linton))
+```
+
+$$
+  T = \frac{\hat{\beta}_{0} - 8}{SE(\hat{\beta}_0)} \sim t(n - 1) \quad if \quad \beta_0 = 8 \\
+  ...\\
+  \text{level of significance = 0.05}
+$$
+
+```{r}
+tStat <- (5.3947 - 8) / 0.4247
+tStat
+n <- nrow(linton)
+
+lowerCriticalValue <- qt(0.025, df = n - 1)
+lowerCriticalValue
+upperCriticalValue <- qt(0.975, df = n - 1)
+upperCriticalValue
+
+tStat > upperCriticalValue
+tStat < lowerCriticalValue
+```
+
+$$
+  \hat{\beta}_0 = 5.3947 \\
+  \hat{\sigma ^ 2} = 4.534 ^ 2
+$$
+
+$$
+  \hat{\beta}_0 - 8
+$$
+$$
+  \hat{\sigma} ^ 2 = S^2(y) \\
+  S^2(y) = \frac{1}{n - 1} \sum_{i = 1} ^ n(y_i - \bar{y}) ^ 2\\
+  S(y) = \sqrt{S^2(y)} \quad \text{sample standard deviation} \\
+  Var(\hat{\beta}_0) = \sigma ^ 2 / n \\
+  SE(\hat{\beta}_0)  = \sqrt{Var(\hat{\beta}_0)} = \frac{\sigma}{\sqrt{n}} \quad \text{standard error of } \hat{\beta}_0 \\
+  T = \frac{\hat{\beta}_0 - 8 }{SE(\hat{\beta}_0)} \\
+  T = \frac{\hat{\beta}_0 - 8 }{SE(\hat{\beta}_0)} \sim t(n - 1) \quad \text{if } \beta_0 = 8\\
+$$
+```{r}
+lowerCriticalValue <- qt(0.025, df = 114 - 1)
+upperCriticalValue <- qt(1 - 0.025, df = 114 - 1)
+lowerCriticalValue
+upperCriticalValue
+
+tStat <- (5.39 - 8) / 0.4247
+tStat
+
+pt(lowerCriticalValue, df = 114 - 1)
+1 - pt(upperCriticalValue, df = 114 - 1)
+```
+
+```{r}
+mean(linton$Incubation) - 8
+```
+```{r}
+quantile(linton$Incubation, 0.05)
+```
+
